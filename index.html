@@ -37,7 +37,7 @@ const {
   Legend, LineChart, Line, ReferenceLine
 } = Recharts;
 
-// ---------- Iconos (reemplazo de lucide-react con SVG inline) ----------
+// ---------- Iconos ----------
 function makeIcon(paths) {
   return function Icon({ size = 16, className = '', style = {} }) {
     return (
@@ -56,12 +56,10 @@ const Eye = makeIcon(<>
   <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z" />
   <circle cx="12" cy="12" r="3" />
 </>);
-
 const X = makeIcon(<>
   <line x1="18" y1="6" x2="6" y2="18" />
   <line x1="6" y1="6" x2="18" y2="18" />
 </>);
-
 const Calculator = makeIcon(<>
   <rect x="4" y="2" width="16" height="20" rx="2" />
   <line x1="8" y1="6" x2="16" y2="6" />
@@ -69,24 +67,20 @@ const Calculator = makeIcon(<>
   <path d="M16 10h.01" /><path d="M12 10h.01" /><path d="M8 10h.01" />
   <path d="M12 14h.01" /><path d="M8 14h.01" /><path d="M12 18h.01" /><path d="M8 18h.01" />
 </>);
-
 const Target = makeIcon(<>
   <circle cx="12" cy="12" r="10" />
   <circle cx="12" cy="12" r="6" />
   <circle cx="12" cy="12" r="2" />
 </>);
-
 const PiggyBank = makeIcon(<>
   <path d="M19 9V6a2 2 0 0 0-2-2h-1.17A5 5 0 0 0 7 5.5c-3.5.4-6 2.6-6 5.5 0 1.6.6 2.7 1.8 3.8V19a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1h4v1a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-2.3c.7-.5 1.2-1 1.6-1.7H21a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1Z" />
   <path d="M2 10.5v1" />
   <path d="M15 8h.01" />
 </>);
-
 const CreditCard = makeIcon(<>
   <rect x="1" y="4" width="22" height="16" rx="2" />
   <line x1="1" y1="10" x2="23" y2="10" />
 </>);
-
 const Landmark = makeIcon(<>
   <line x1="3" y1="22" x2="21" y2="22" />
   <line x1="6" y1="18" x2="6" y2="11" />
@@ -95,41 +89,43 @@ const Landmark = makeIcon(<>
   <line x1="18" y1="18" x2="18" y2="11" />
   <polygon points="12 2 20 7 4 7" />
 </>);
-
 const Wallet = makeIcon(<>
   <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4" />
   <path d="M3 5v14a2 2 0 0 0 2 2h16v-5" />
   <path d="M18 12a2 2 0 0 0 0 4h4v-4Z" />
 </>);
-
 const TrendingUp = makeIcon(<>
   <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
   <polyline points="16 7 22 7 22 13" />
 </>);
-
 const AlertTriangle = makeIcon(<>
   <path d="m21.73 18-8-14a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
   <line x1="12" y1="9" x2="12" y2="13" />
   <line x1="12" y1="17" x2="12.01" y2="17" />
 </>);
-
 const Sparkles = makeIcon(<>
   <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" />
 </>);
-
 const ArrowRight = makeIcon(<>
   <line x1="5" y1="12" x2="19" y2="12" />
   <polyline points="12 5 19 12 12 19" />
 </>);
-
 const RotateCcw = makeIcon(<>
   <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
   <path d="M3 3v5h5" />
 </>);
-
 const Plus = makeIcon(<>
   <line x1="12" y1="5" x2="12" y2="19" />
   <line x1="5" y1="12" x2="19" y2="12" />
+</>);
+const ClockIcon = makeIcon(<>
+  <circle cx="12" cy="12" r="10" />
+  <polyline points="12 6 12 12 16 14" />
+</>);
+const PercentIcon = makeIcon(<>
+  <line x1="19" y1="5" x2="5" y2="19" />
+  <circle cx="6.5" cy="6.5" r="2.5" />
+  <circle cx="17.5" cy="17.5" r="2.5" />
 </>);
 
 // ---------- Utilidades ----------
@@ -138,7 +134,6 @@ const fmt = (n) => {
   return '$' + n.toLocaleString('es-EC', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 };
 const fmtInt = (n) => n.toLocaleString('es-EC', { maximumFractionDigits: 0 });
-
 const monthsToYears = (m) => {
   if (!isFinite(m)) return '—';
   const y = Math.floor(m / 12);
@@ -148,11 +143,10 @@ const monthsToYears = (m) => {
   return `${y} ${y === 1 ? 'año' : 'años'} y ${rem} ${rem === 1 ? 'mes' : 'meses'}`;
 };
 
-// ---------- Motores de cálculo: amortización ----------
+// ---------- Motores de cálculo: amortización y simulación ----------
 function calcularAmortizacion(P, r, n, sistema) {
   const rows = [];
   let saldo = P;
-
   if (sistema === 'francesa') {
     const pago = (P * r) / (1 - Math.pow(1 + r, -n));
     for (let t = 1; t <= n; t++) {
@@ -172,7 +166,7 @@ function calcularAmortizacion(P, r, n, sistema) {
       rows.push({ t, saldoInicial: saldo, pago, interes, capital: capitalFijo, saldoFinal });
       saldo = saldoFinal;
     }
-  } else { // americana
+  } else { 
     for (let t = 1; t <= n; t++) {
       const interes = saldo * r;
       const capital = t === n ? saldo : 0;
@@ -209,7 +203,6 @@ function calcularCompuesto(P, r, n) {
   return { rows, totalInteres: rows.reduce((a, b) => a + b.interes, 0), saldoFinal: saldo };
 }
 
-// ---------- Motor unificado de simulación (simulador de destinos) ----------
 function simularCamino({ tipo, monto, base, tasaAnual = 0, extraMensual = 0, extrasUnicos = [], maxMeses = 1200 }) {
   const r = tasaAnual / 100 / 12;
   const aporteExtra = (m) =>
@@ -252,7 +245,6 @@ function simularCamino({ tipo, monto, base, tasaAnual = 0, extraMensual = 0, ext
     return { meses: Infinity, totalInteres: saldo - aportado, serie, alcanzado: false };
   }
 
-  // deuda (préstamo o tarjeta)
   let saldo = monto, interesTotal = 0;
   const serie = [{ mes: 0, saldo }];
   const hayExtraUnico = extrasUnicos.some((e) => (e.monto || 0) > 0);
@@ -271,103 +263,26 @@ function simularCamino({ tipo, monto, base, tasaAnual = 0, extraMensual = 0, ext
   return { meses: Infinity, totalInteres: interesTotal, serie, nuncaPaga: false };
 }
 
-// ---------- Modal genérico ----------
+// ---------- UI básica ----------
 function Modal({ onClose, children, wide }) {
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
-      style={{ background: 'rgba(31,41,55,0.55)' }}
-      onClick={onClose}
-    >
-      <div
-        className={`bg-white rounded-3xl shadow-xl w-full ${wide ? 'max-w-2xl' : 'max-w-lg'} max-h-[88vh] overflow-y-auto relative`}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 p-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 z-10"
-          aria-label="Cerrar"
-        >
-          <X size={18} />
-        </button>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: 'rgba(31,41,55,0.55)' }} onClick={onClose}>
+      <div className={`bg-white rounded-3xl shadow-xl w-full ${wide ? 'max-w-2xl' : 'max-w-lg'} max-h-[88vh] overflow-y-auto relative`} onClick={(e) => e.stopPropagation()}>
+        <button onClick={onClose} className="absolute top-4 right-4 p-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 z-10" aria-label="Cerrar"><X size={18} /></button>
         <div className="p-6 sm:p-8">{children}</div>
       </div>
     </div>
   );
 }
 
-// ---------- Explicación + fórmulas por tema ----------
-function TemaIntro({ tipo, sistema }) {
-  const content = {
-    simple: {
-      titulo: '¿Qué es el interés simple?',
-      color: 'teal',
-      texto: 'Es la forma más sencilla de interés: cada periodo ganas (o pagas) exactamente lo mismo, calculado siempre sobre el monto inicial. Es como si te dieran una "propina" fija cada mes sobre lo que pusiste al principio, sin importar cuánto se haya acumulado ya.',
-      formulas: [
-        { nombre: 'Monto final', expr: 'F = P · (1 + r · t)' },
-        { nombre: 'Interés generado', expr: 'I = P · r · t' },
-      ],
-      variables: 'P = capital inicial · r = tasa por periodo · t = número de periodos · F = monto final',
-    },
-    compuesto: {
-      titulo: '¿Qué es el interés compuesto?',
-      color: 'teal',
-      texto: 'Aquí el interés se calcula sobre el saldo acumulado, no solo sobre el monto inicial. Es "interés sobre interés": cada periodo el saldo crece un poco más, y el siguiente interés se calcula sobre ese saldo ya más grande. Por eso es la base de las inversiones a largo plazo, y también la razón por la que una deuda impaga puede crecer muy rápido.',
-      formulas: [{ nombre: 'Monto final', expr: 'F = P · (1 + r)ᵗ' }],
-      variables: 'P = capital inicial · r = tasa por periodo · t = número de periodos · F = monto final',
-    },
-    anualidad: {
-      titulo: '¿Qué es una anualidad?',
-      color: 'blue',
-      texto: 'Una anualidad es una serie de pagos a intervalos regulares (por ejemplo, mensuales) que sirven para pagar un préstamo. Así funcionan casi todos los créditos, hipotecas y tarjetas cuando pagas "en cuotas". Lo interesante es que existen distintos sistemas para repartir cuánto de cada pago es interés y cuánto es capital — por eso el mismo préstamo puede sentirse muy distinto según el sistema.',
-      formulas: [
-        { nombre: 'Francesa (cuota fija)', expr: 'Pago = P · r / (1 − (1+r)⁻ⁿ)', activo: sistema === 'francesa' },
-        { nombre: 'Alemana (capital fijo)', expr: 'Capital = P / n', activo: sistema === 'alemana' },
-        { nombre: 'Americana (bullet)', expr: 'Pago = Interés; Capital todo al final', activo: sistema === 'americana' },
-      ],
-      variables: 'P = monto del préstamo · r = tasa por periodo · n = número de periodos',
-    },
-  };
-  const c = content[tipo];
-  const ring = c.color === 'teal' ? 'border-[#12B76A]/20 bg-[#E3FBEF]' : 'border-[#7C5CFF]/20 bg-[#F1EDFF]';
-  const dot = c.color === 'teal' ? 'text-[#067A48]' : 'text-[#5B3DF5]';
-
-  return (
-    <div className={`rounded-2xl border ${ring} p-5 mb-5`}>
-      <div className={`flex items-center gap-2 font-semibold text-[15px] mb-2 ${dot}`} style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-        <Sparkles size={16} /> {c.titulo}
-      </div>
-      <p className="text-sm text-gray-700 leading-relaxed mb-3">{c.texto}</p>
-      <div className="flex flex-wrap gap-2">
-        {c.formulas.map((f) => (
-          <div
-            key={f.nombre}
-            className={`px-3 py-2 rounded-xl bg-white border ${f.activo ? 'border-2 border-[#5B3DF5]' : 'border-[#EDEAFB]'}`}
-          >
-            <div className="text-[11px] text-gray-500 font-medium">{f.nombre}</div>
-            <div className="text-sm font-semibold text-[#1A1533]" style={{ fontFamily: "'JetBrains Mono', monospace" }}>{f.expr}</div>
-          </div>
-        ))}
-      </div>
-      <p className="text-[12px] text-gray-500 mt-3">{c.variables}</p>
-    </div>
-  );
-}
-
-// ---------- UI básica ----------
 function TabButton({ active, onClick, icon: Icon, children }) {
   return (
     <button
       onClick={onClick}
-      className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all ${
-        active
-          ? 'text-white shadow-md shadow-[#5B3DF5]/25'
-          : 'bg-white text-gray-500 hover:text-[#5B3DF5] border border-[#EDEAFB] hover:border-[#D9D2FA]'
+      className={`flex items-center whitespace-nowrap gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all ${
+        active ? 'text-white shadow-md shadow-[#5B3DF5]/25' : 'bg-white text-gray-500 hover:text-[#5B3DF5] border border-[#EDEAFB] hover:border-[#D9D2FA]'
       }`}
-      style={{
-        fontFamily: "'Space Grotesk', sans-serif",
-        background: active ? 'linear-gradient(135deg, #5B3DF5, #7C5CFF)' : undefined,
-      }}
+      style={{ fontFamily: "'Space Grotesk', sans-serif", background: active ? 'linear-gradient(135deg, #5B3DF5, #7C5CFF)' : undefined }}
     >
       <Icon size={16} /> {children}
     </button>
@@ -393,15 +308,7 @@ function Field({ label, suffix, value, onChange, min, step }) {
     <label className="flex flex-col gap-1">
       <span className="text-xs uppercase tracking-wide text-gray-500 font-semibold">{label}</span>
       <div className="flex items-center border-2 border-[#EDEAFB] rounded-xl bg-white focus-within:border-[#5B3DF5] overflow-hidden">
-        <input
-          type="number"
-          value={value}
-          min={min}
-          step={step}
-          onChange={(e) => onChange(parseFloat(e.target.value) || 0)}
-          className="w-full px-3 py-2.5 outline-none bg-transparent text-[#1A1533]"
-          style={{ fontFamily: "'JetBrains Mono', monospace" }}
-        />
+        <input type="number" value={value} min={min} step={step} onChange={(e) => onChange(parseFloat(e.target.value) || 0)} className="w-full px-3 py-2.5 outline-none bg-transparent text-[#1A1533]" style={{ fontFamily: "'JetBrains Mono', monospace" }} />
         {suffix && <span className="pr-3 text-sm text-gray-400">{suffix}</span>}
       </div>
     </label>
@@ -409,11 +316,7 @@ function Field({ label, suffix, value, onChange, min, step }) {
 }
 
 function StatCard({ label, value, accent }) {
-  const colors = {
-    teal: 'text-[#067A48] bg-[#E3FBEF]',
-    coral: 'text-[#C23E28] bg-[#FFE8E3]',
-    blue: 'text-[#4530B8] bg-[#F1EDFF]',
-  };
+  const colors = { teal: 'text-[#067A48] bg-[#E3FBEF]', coral: 'text-[#C23E28] bg-[#FFE8E3]', blue: 'text-[#4530B8] bg-[#F1EDFF]' };
   return (
     <div className={`px-4 py-3 rounded-2xl ${colors[accent]}`}>
       <div className="text-[11px] uppercase tracking-wide font-semibold opacity-80">{label}</div>
@@ -422,82 +325,79 @@ function StatCard({ label, value, accent }) {
   );
 }
 
-// ---------- Texto de fórmula por fila (para el modal de detalle) ----------
-function explicacionFila(row, tipo, sistema, r) {
-  if (tipo === 'anualidad') {
-    if (sistema === 'francesa') {
-      return [
-        `Interés = Saldo anterior × r = ${fmt(row.saldoInicial)} × ${r.toFixed(5)} = ${fmt(row.interes)}`,
-        `Capital = Pago − Interés = ${fmt(row.pago)} − ${fmt(row.interes)} = ${fmt(row.capital)}`,
-        `Saldo nuevo = Saldo anterior − Capital = ${fmt(row.saldoInicial)} − ${fmt(row.capital)} = ${fmt(row.saldoFinal)}`,
-        `En el sistema francés el pago es siempre el mismo (${fmt(row.pago)}); lo que cambia es cuánto de ese pago es interés y cuánto capital.`,
-      ];
-    }
-    if (sistema === 'alemana') {
-      return [
-        `Capital fijo = P / n = ${fmt(row.capital)} (siempre el mismo en cada periodo)`,
-        `Interés = Saldo anterior × r = ${fmt(row.saldoInicial)} × ${r.toFixed(5)} = ${fmt(row.interes)}`,
-        `Pago = Capital + Interés = ${fmt(row.capital)} + ${fmt(row.interes)} = ${fmt(row.pago)}`,
-        `Como el capital que abonas no cambia pero el saldo va bajando, el interés y el pago total son cada vez más pequeños.`,
-      ];
-    }
-    return [
-      `Interés = Saldo × r = ${fmt(row.saldoInicial)} × ${r.toFixed(5)} = ${fmt(row.interes)}`,
-      row.capital > 0
-        ? `Este es el último periodo: se devuelve todo el capital de una vez = ${fmt(row.capital)}`
-        : `Capital abonado este periodo = ${fmt(row.capital)} (en el sistema americano solo se paga interés hasta el final)`,
-      `Pago total = Interés + Capital = ${fmt(row.pago)}`,
-    ];
-  }
-  if (tipo === 'simple') {
-    return [
-      `Interés = P × r = ${fmt(row.capital)} × ${r.toFixed(5)} = ${fmt(row.interes)}`,
-      `Saldo nuevo = Saldo anterior + Interés = ${fmt(row.saldoInicial)} + ${fmt(row.interes)} = ${fmt(row.saldoFinal)}`,
-      `El interés no se acumula sobre sí mismo: cada periodo genera exactamente lo mismo.`,
-    ];
-  }
-  return [
-    `Interés = Saldo anterior × r = ${fmt(row.saldoInicial)} × ${r.toFixed(5)} = ${fmt(row.interes)}`,
-    `Saldo nuevo = Saldo anterior × (1 + r) = ${fmt(row.saldoInicial)} × ${(1 + r).toFixed(5)} = ${fmt(row.saldoFinal)}`,
-    `Este interés ya generado empezará, a su vez, a generar más interés el siguiente periodo.`,
-  ];
-}
-
-// ---------- Modal de detalle de fila ----------
-function FilaDetalleModal({ row, rows, tipo, sistema, r, onClose }) {
-  const historia = rows.slice(0, row.t).map((rr) => ({
-    periodo: rr.t,
-    Interés: rr.interes,
-    Capital: rr.capital,
-    Saldo: rr.saldoFinal,
-  }));
-  const lineas = explicacionFila(row, tipo, sistema, r);
+function TemaIntro({ tipo, sistema }) {
+  const content = {
+    simple: {
+      titulo: '¿Qué es el interés simple?', color: 'teal',
+      texto: 'Es la forma más sencilla de interés: cada periodo ganas (o pagas) exactamente lo mismo, calculado siempre sobre el monto inicial.',
+      formulas: [{ nombre: 'Monto final', expr: 'F = P · (1 + r · t)' }, { nombre: 'Interés generado', expr: 'I = P · r · t' }],
+      variables: 'P = capital inicial · r = tasa por periodo · t = número de periodos · F = monto final',
+    },
+    compuesto: {
+      titulo: '¿Qué es el interés compuesto?', color: 'teal',
+      texto: 'Aquí el interés se calcula sobre el saldo acumulado, no solo sobre el monto inicial. Es "interés sobre interés".',
+      formulas: [{ nombre: 'Monto final', expr: 'F = P · (1 + r)ᵗ' }],
+      variables: 'P = capital inicial · r = tasa por periodo · t = número de periodos · F = monto final',
+    },
+    anualidad: {
+      titulo: '¿Qué es una anualidad?', color: 'blue',
+      texto: 'Una anualidad es una serie de pagos a intervalos regulares que sirven para amortizar un préstamo.',
+      formulas: [
+        { nombre: 'Francesa (cuota fija)', expr: 'Pago = P · r / (1 − (1+r)⁻ⁿ)', activo: sistema === 'francesa' },
+        { nombre: 'Alemana (capital fijo)', expr: 'Capital = P / n', activo: sistema === 'alemana' },
+        { nombre: 'Americana (bullet)', expr: 'Pago = Interés; Capital todo al final', activo: sistema === 'americana' },
+      ],
+      variables: 'P = monto del préstamo · r = tasa por periodo · n = número de periodos',
+    },
+  };
+  const c = content[tipo];
+  const ring = c.color === 'teal' ? 'border-[#12B76A]/20 bg-[#E3FBEF]' : 'border-[#7C5CFF]/20 bg-[#F1EDFF]';
+  const dot = c.color === 'teal' ? 'text-[#067A48]' : 'text-[#5B3DF5]';
 
   return (
-    <Modal onClose={onClose} wide>
-      <div className="flex items-center gap-2 text-[#4530B8] font-semibold text-sm mb-1" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-        <Eye size={16} /> Periodo {row.t}
+    <div className={`rounded-2xl border ${ring} p-5 mb-5`}>
+      <div className={`flex items-center gap-2 font-semibold text-[15px] mb-2 ${dot}`} style={{ fontFamily: "'Space Grotesk', sans-serif" }}><Sparkles size={16} /> {c.titulo}</div>
+      <p className="text-sm text-gray-700 leading-relaxed mb-3">{c.texto}</p>
+      <div className="flex flex-wrap gap-2">
+        {c.formulas.map((f) => (
+          <div key={f.nombre} className={`px-3 py-2 rounded-xl bg-white border ${f.activo ? 'border-2 border-[#5B3DF5]' : 'border-[#EDEAFB]'}`}>
+            <div className="text-[11px] text-gray-500 font-medium">{f.nombre}</div>
+            <div className="text-sm font-semibold text-[#1A1533]" style={{ fontFamily: "'JetBrains Mono', monospace" }}>{f.expr}</div>
+          </div>
+        ))}
       </div>
-      <h3 className="text-2xl text-[#1A1533] mb-4" style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600 }}>
-        Así se calculó este registro
-      </h3>
+      <p className="text-[12px] text-gray-500 mt-3">{c.variables}</p>
+    </div>
+  );
+}
 
+function explicacionFila(row, tipo, sistema, r) {
+  if (tipo === 'anualidad') {
+    if (sistema === 'francesa') return [`Interés = Saldo anterior × r = ${fmt(row.saldoInicial)} × ${r.toFixed(5)} = ${fmt(row.interes)}`, `Capital = Pago − Interés = ${fmt(row.pago)} − ${fmt(row.interes)} = ${fmt(row.capital)}`, `Saldo nuevo = Saldo anterior − Capital = ${fmt(row.saldoInicial)} − ${fmt(row.capital)} = ${fmt(row.saldoFinal)}`];
+    if (sistema === 'alemana') return [`Capital fijo = P / n = ${fmt(row.capital)}`, `Interés = Saldo anterior × r = ${fmt(row.saldoInicial)} × ${r.toFixed(5)} = ${fmt(row.interes)}`, `Pago = Capital + Interés = ${fmt(row.capital)} + ${fmt(row.interes)} = ${fmt(row.pago)}`];
+    return [`Interés = Saldo × r = ${fmt(row.saldoInicial)} × ${r.toFixed(5)} = ${fmt(row.interes)}`, row.capital > 0 ? `Se devuelve todo el capital = ${fmt(row.capital)}` : `Capital abonado este periodo = ${fmt(row.capital)}`, `Pago total = Interés + Capital = ${fmt(row.pago)}`];
+  }
+  if (tipo === 'simple') return [`Interés = P × r = ${fmt(row.capital)} × ${r.toFixed(5)} = ${fmt(row.interes)}`, `Saldo nuevo = Saldo anterior + Interés = ${fmt(row.saldoInicial)} + ${fmt(row.interes)} = ${fmt(row.saldoFinal)}`];
+  return [`Interés = Saldo anterior × r = ${fmt(row.saldoInicial)} × ${r.toFixed(5)} = ${fmt(row.interes)}`, `Saldo nuevo = Saldo anterior × (1 + r) = ${fmt(row.saldoInicial)} × ${(1 + r).toFixed(5)} = ${fmt(row.saldoFinal)}`];
+}
+
+function FilaDetalleModal({ row, rows, tipo, sistema, r, onClose }) {
+  const historia = rows.slice(0, row.t).map((rr) => ({ periodo: rr.t, Interés: rr.interes, Capital: rr.capital, Saldo: rr.saldoFinal }));
+  const lineas = explicacionFila(row, tipo, sistema, r);
+  return (
+    <Modal onClose={onClose} wide>
+      <div className="flex items-center gap-2 text-[#4530B8] font-semibold text-sm mb-1" style={{ fontFamily: "'Space Grotesk', sans-serif" }}><Eye size={16} /> Periodo {row.t}</div>
+      <h3 className="text-2xl text-[#1A1533] mb-4" style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600 }}>Así se calculó este registro</h3>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-5">
         <StatCard label="Saldo inicial" value={fmt(row.saldoInicial)} accent="blue" />
         <StatCard label="Interés" value={fmt(row.interes)} accent="coral" />
         <StatCard label="Capital" value={fmt(row.capital)} accent="teal" />
         <StatCard label="Saldo final" value={fmt(row.saldoFinal)} accent="blue" />
       </div>
-
       <div className="bg-[#F7F5FF] rounded-2xl p-4 mb-5 space-y-2" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-        {lineas.map((l, i) => (
-          <p key={i} className="text-[13px] text-gray-700 leading-relaxed">{l}</p>
-        ))}
+        {lineas.map((l, i) => <p key={i} className="text-[13px] text-gray-700 leading-relaxed">{l}</p>)}
       </div>
-
-      <div className="text-xs uppercase tracking-wide text-gray-500 font-semibold mb-2">
-        Evolución hasta este periodo
-      </div>
+      <div className="text-xs uppercase tracking-wide text-gray-500 font-semibold mb-2">Evolución hasta este periodo</div>
       <div className="bg-white border border-[#EDEAFB] rounded-2xl p-3" style={{ height: 220 }}>
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={historia} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
@@ -512,14 +412,10 @@ function FilaDetalleModal({ row, rows, tipo, sistema, r, onClose }) {
           </LineChart>
         </ResponsiveContainer>
       </div>
-      <p className="text-[11px] text-gray-400 mt-2">
-        Interés y capital se ven pequeños junto al saldo porque son montos por periodo, mientras que el saldo es un acumulado — fíjate en la forma de cada curva, no solo en su altura.
-      </p>
     </Modal>
   );
 }
 
-// ---------- Fila de tabla ----------
 function FilaTabla({ row, tipo, sistema, r, onVer }) {
   return (
     <tr className="border-b border-[#F1EFFC] hover:bg-[#F7F5FF]">
@@ -529,20 +425,12 @@ function FilaTabla({ row, tipo, sistema, r, onVer }) {
       <td className="px-3 py-2.5 text-right tabular-nums text-[#C23E28]">{fmt(row.interes)}</td>
       <td className="px-3 py-2.5 text-right tabular-nums text-[#067A48]">{fmt(row.capital)}</td>
       <td className="px-3 py-2.5 text-right tabular-nums font-semibold">{fmt(row.saldoFinal)}</td>
-      <td className="px-2 py-2.5 text-center">
-        <button
-          onClick={onVer}
-          className="p-1.5 rounded-full bg-[#F1EDFF] text-[#5B3DF5] hover:bg-[#E3DBFF]"
-          aria-label={`Ver el cálculo del periodo ${row.t}`}
-        >
-          <Eye size={15} />
-        </button>
-      </td>
+      <td className="px-2 py-2.5 text-center"><button onClick={onVer} className="p-1.5 rounded-full bg-[#F1EDFF] text-[#5B3DF5] hover:bg-[#E3DBFF]"><Eye size={15} /></button></td>
     </tr>
   );
 }
 
-// ---------- Tab de calculadoras ----------
+// ---------- Tab 1: Calculadoras de amortización ----------
 function CalculadorasTab() {
   const [tipo, setTipo] = useState('anualidad');
   const [sistema, setSistema] = useState('francesa');
@@ -560,11 +448,7 @@ function CalculadorasTab() {
     return calcularCompuesto(P, r, n);
   }, [tipo, P, r, n, sistema]);
 
-  const chartData = resultado.rows.map((row) => ({
-    periodo: row.t,
-    Capital: row.capital,
-    Interés: row.interes,
-  }));
+  const chartData = resultado.rows.map((row) => ({ periodo: row.t, Capital: row.capital, Interés: row.interes }));
 
   return (
     <div className="space-y-6">
@@ -611,14 +495,12 @@ function CalculadorasTab() {
       </div>
 
       <div>
-        <div className="text-xs uppercase tracking-wide text-gray-500 font-semibold mb-2">
-          Composición {tipo === 'anualidad' ? 'del pago' : 'del saldo'} por periodo
-        </div>
+        <div className="text-xs uppercase tracking-wide text-gray-500 font-semibold mb-2">Composición {tipo === 'anualidad' ? 'del pago' : 'del saldo'} por periodo</div>
         <div className="bg-white border border-[#EDEAFB] rounded-2xl p-3" style={{ height: 260 }}>
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={chartData} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#EEF0F0" vertical={false} />
-              <XAxis dataKey="periodo" tick={{ fontSize: 11, fill: '#9CA3AF' }} label={{ value: 'Periodo (mes)', position: 'insideBottom', offset: -2, fontSize: 11, fill: '#9CA3AF' }} />
+              <XAxis dataKey="periodo" tick={{ fontSize: 11, fill: '#9CA3AF' }} label={{ value: 'Periodo', position: 'insideBottom', offset: -2, fontSize: 11, fill: '#9CA3AF' }} />
               <YAxis tick={{ fontSize: 11, fill: '#9CA3AF' }} tickFormatter={(v) => '$' + fmtInt(v)} />
               <Tooltip formatter={(v) => fmt(v)} contentStyle={{ fontSize: 12, borderRadius: 12 }} />
               <Legend wrapperStyle={{ fontSize: 12 }} />
@@ -627,17 +509,10 @@ function CalculadorasTab() {
             </BarChart>
           </ResponsiveContainer>
         </div>
-        <p className="text-xs text-gray-500 mt-2">
-          {tipo === 'anualidad' && sistema === 'francesa' && 'El pago total es siempre el mismo, pero su composición cambia: al inicio pagas sobre todo interés, al final sobre todo capital.'}
-          {tipo === 'anualidad' && sistema === 'alemana' && 'El capital que pagas es siempre el mismo, así que el pago total (y el interés) va bajando con el tiempo.'}
-          {tipo === 'anualidad' && sistema === 'americana' && 'Solo pagas interés hasta el último periodo, cuando devuelves todo el capital de golpe.'}
-          {tipo === 'simple' && 'El interés simple crece de forma lineal: cada periodo suma exactamente lo mismo.'}
-          {tipo === 'compuesto' && 'El interés compuesto crece de forma exponencial: el interés generado también empieza a generar interés.'}
-        </p>
       </div>
 
       <div>
-        <div className="text-xs uppercase tracking-wide text-gray-500 font-semibold mb-2">Tabla — toca el ojito para ver cómo se calculó cada fila</div>
+        <div className="text-xs uppercase tracking-wide text-gray-500 font-semibold mb-2">Tabla de evolución</div>
         <div className="bg-white border border-[#EDEAFB] rounded-2xl overflow-hidden overflow-x-auto">
           <table className="w-full text-sm" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
             <thead>
@@ -660,131 +535,277 @@ function CalculadorasTab() {
         </div>
       </div>
 
-      {modalRow && (
-        <FilaDetalleModal row={modalRow} rows={resultado.rows} tipo={tipo} sistema={sistema} r={r} onClose={() => setModalRow(null)} />
-      )}
+      {modalRow && <FilaDetalleModal row={modalRow} rows={resultado.rows} tipo={tipo} sistema={sistema} r={r} onClose={() => setModalRow(null)} />}
     </div>
   );
 }
 
-// ---------- Modal de detalle de un destino (con pagos extraordinarios) ----------
-let extraIdSeq = 1;
+// ---------- Tab 2: Valor Futuro / Valor Presente ----------
+function ValorTiempoTab() {
+  const [calculo, setCalculo] = useState('futuro');
+  const [interes, setInteres] = useState('compuesto');
+  const [monto, setMonto] = useState(10000);
+  const [tasa, setTasa] = useState(5);
+  const [n, setN] = useState(12);
 
+  const r = tasa / 100;
+
+  const resultados = useMemo(() => {
+    let resultado = 0;
+    let interesTotal = 0;
+    const serie = [];
+
+    if (calculo === 'futuro') {
+      for (let t = 0; t <= n; t++) {
+        let valorEnT = interes === 'simple' ? monto * (1 + r * t) : monto * Math.pow(1 + r, t);
+        serie.push({ periodo: t, valor: valorEnT });
+      }
+      resultado = serie[n].valor;
+      interesTotal = resultado - monto;
+    } else {
+      let P = interes === 'simple' ? monto / (1 + r * n) : monto / Math.pow(1 + r, n);
+      for (let t = 0; t <= n; t++) {
+        let valorEnT = interes === 'simple' ? P * (1 + r * t) : P * Math.pow(1 + r, t);
+        serie.push({ periodo: t, valor: valorEnT });
+      }
+      resultado = P;
+      interesTotal = monto - resultado;
+    }
+    return { resultado, interesTotal, serie };
+  }, [calculo, interes, monto, tasa, n]);
+
+  return (
+    <div className="space-y-6">
+      <div className="rounded-2xl border border-[#12B76A]/20 bg-[#E3FBEF] p-5 mb-5">
+        <div className="flex items-center gap-2 font-semibold text-[15px] mb-2 text-[#067A48]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+          <Sparkles size={16} /> El valor del dinero en el tiempo
+        </div>
+        <p className="text-sm text-gray-700 leading-relaxed mb-2">
+          Dinero hoy no vale lo mismo que dinero mañana. Esta herramienta te permite proyectar cuánto valdrá tu dinero en el futuro (Valor Futuro) o cuánto dinero necesitas hoy para alcanzar una meta futura (Valor Presente).
+        </p>
+      </div>
+
+      <div className="flex flex-wrap gap-2">
+        <PillButton active={calculo === 'futuro'} onClick={() => setCalculo('futuro')}>Calcular Valor Futuro (F)</PillButton>
+        <PillButton active={calculo === 'presente'} onClick={() => setCalculo('presente')}>Calcular Valor Presente (P)</PillButton>
+      </div>
+      <div className="flex flex-wrap gap-2">
+        <PillButton active={interes === 'simple'} onClick={() => setInteres('simple')}>Interés Simple</PillButton>
+        <PillButton active={interes === 'compuesto'} onClick={() => setInteres('compuesto')}>Interés Compuesto</PillButton>
+      </div>
+
+      <div className="grid sm:grid-cols-3 gap-4 bg-white p-4 rounded-2xl border border-[#EDEAFB]">
+        <Field label={calculo === 'futuro' ? 'Valor Presente (P)' : 'Valor Futuro (F)'} value={monto} onChange={setMonto} min={0} step={100} />
+        <Field label="Tasa de interés por periodo" suffix="%" value={tasa} onChange={setTasa} min={0} step={0.1} />
+        <Field label="Número de periodos (t)" value={n} onChange={(v) => setN(Math.max(1, Math.round(v)))} min={1} step={1} />
+      </div>
+
+      <div className="grid sm:grid-cols-2 gap-3">
+        <StatCard label={calculo === 'futuro' ? 'Valor Futuro Calculado (F)' : 'Valor Presente Calculado (P)'} value={fmt(resultados.resultado)} accent="blue" />
+        <StatCard label="Interés Generado" value={fmt(resultados.interesTotal)} accent="coral" />
+      </div>
+
+      <div>
+        <div className="text-xs uppercase tracking-wide text-gray-500 font-semibold mb-2">Evolución del valor en el tiempo</div>
+        <div className="bg-white border border-[#EDEAFB] rounded-2xl p-3" style={{ height: 260 }}>
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart data={resultados.serie} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#EEF0F0" vertical={false} />
+              <XAxis dataKey="periodo" tick={{ fontSize: 11, fill: '#9CA3AF' }} label={{ value: 'Periodos', position: 'insideBottom', offset: -2, fontSize: 11, fill: '#9CA3AF' }} />
+              <YAxis tick={{ fontSize: 11, fill: '#9CA3AF' }} tickFormatter={(v) => '$' + fmtInt(v)} />
+              <Tooltip formatter={(v) => fmt(v)} contentStyle={{ fontSize: 12, borderRadius: 12 }} />
+              <Line type="monotone" dataKey="valor" stroke="#5B3DF5" strokeWidth={3} dot={false} name="Valor" />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ---------- Tab 3: Tasas Equivalentes ----------
+function TasasEquivalentesTab() {
+  const opcionesPeriodo = [
+    { id: 'anual', label: 'Anual', m: 1 },
+    { id: 'semestral', label: 'Semestral', m: 2 },
+    { id: 'cuatrimestral', label: 'Cuatrimestral', m: 3 },
+    { id: 'trimestral', label: 'Trimestral', m: 4 },
+    { id: 'bimestral', label: 'Bimestral', m: 6 },
+    { id: 'mensual', label: 'Mensual', m: 12 },
+    { id: 'quincenal', label: 'Quincenal', m: 24 },
+    { id: 'diaria', label: 'Diaria (360)', m: 360 }
+  ];
+
+  const [tasaOrigen, setTasaOrigen] = useState(12);
+  const [tieneCapOrigen, setTieneCapOrigen] = useState(false);
+  const [perOrigen, setPerOrigen] = useState('anual'); 
+  const [capOrigen, setCapOrigen] = useState('mensual'); 
+
+  const [tieneCapDestino, setTieneCapDestino] = useState(false);
+  const [perDestino, setPerDestino] = useState('mensual');
+  const [capDestino, setCapDestino] = useState('diaria');
+
+  const calcularTasaDestino = () => {
+    let r = tasaOrigen / 100;
+    let EA = 0;
+
+    // 1. Llevar Origen a Efectiva Anual (EA)
+    if (!tieneCapOrigen) {
+      let mEfectivo = opcionesPeriodo.find(o => o.id === perOrigen).m;
+      EA = Math.pow(1 + r, mEfectivo) - 1;
+    } else {
+      let mCap = opcionesPeriodo.find(o => o.id === capOrigen).m;
+      EA = Math.pow(1 + r / mCap, mCap) - 1;
+    }
+
+    // 2. Llevar EA a Destino
+    let resultado = 0;
+    if (!tieneCapDestino) {
+      let mEfectivo = opcionesPeriodo.find(o => o.id === perDestino).m;
+      resultado = Math.pow(1 + EA, 1 / mEfectivo) - 1;
+    } else {
+      let mCap = opcionesPeriodo.find(o => o.id === capDestino).m;
+      resultado = mCap * (Math.pow(1 + EA, 1 / mCap) - 1);
+    }
+    return resultado * 100;
+  };
+
+  return (
+    <div className="space-y-6">
+      <div className="rounded-2xl border border-[#7C5CFF]/20 bg-[#F1EDFF] p-5 mb-5">
+        <div className="flex items-center gap-2 font-semibold text-[15px] mb-2 text-[#5B3DF5]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+          <PercentIcon size={16} /> Conversión de Tasas Equivalentes
+        </div>
+        <p className="text-sm text-gray-700 leading-relaxed mb-2">
+          Garantiza que el dinero rinda lo mismo, sin importar cómo se exprese el interés. Si marcas la casilla <b>"Tiene capitalización"</b>, el sistema asume una Tasa Nominal Anual (TNA) con la frecuencia seleccionada. Si no lo marcas, se calculará directamente sobre una Tasa Efectiva.
+        </p>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-6">
+        {/* ORIGEN */}
+        <div className="bg-white p-5 rounded-2xl border-2 border-[#EDEAFB]">
+          <div className="text-sm font-semibold text-[#1A1533] mb-4 uppercase tracking-wide">Tasa de Origen</div>
+          <div className="space-y-4">
+            <Field label="Valor de la Tasa" suffix="%" value={tasaOrigen} onChange={setTasaOrigen} min={0} step={0.1} />
+
+            <label className="flex items-center gap-2 cursor-pointer mt-2">
+              <input type="checkbox" checked={tieneCapOrigen} onChange={(e) => setTieneCapOrigen(e.target.checked)} className="w-4 h-4 text-[#5B3DF5] rounded border-gray-300 focus:ring-[#5B3DF5]" />
+              <span className="text-sm text-gray-700 font-medium">¿Tiene capitalización? (Tasa Nominal)</span>
+            </label>
+
+            {!tieneCapOrigen ? (
+              <label className="flex flex-col gap-1">
+                <span className="text-xs uppercase tracking-wide text-gray-500 font-semibold">Periodo de la tasa efectiva</span>
+                <select value={perOrigen} onChange={(e) => setPerOrigen(e.target.value)} className="border-2 border-[#EDEAFB] rounded-xl px-3 py-2.5 bg-white text-[#1A1533]">
+                  {opcionesPeriodo.map(o => <option key={o.id} value={o.id}>{o.label}</option>)}
+                </select>
+              </label>
+            ) : (
+              <label className="flex flex-col gap-1">
+                <span className="text-xs uppercase tracking-wide text-gray-500 font-semibold">Se capitaliza de forma...</span>
+                <select value={capOrigen} onChange={(e) => setCapOrigen(e.target.value)} className="border-2 border-[#EDEAFB] rounded-xl px-3 py-2.5 bg-white text-[#1A1533]">
+                  {opcionesPeriodo.map(o => <option key={o.id} value={o.id}>{o.label}</option>)}
+                </select>
+              </label>
+            )}
+          </div>
+        </div>
+
+        {/* DESTINO */}
+        <div className="bg-white p-5 rounded-2xl border-2 border-[#C9BFF7] shadow-sm shadow-[#5B3DF5]/10 relative">
+          <div className="absolute -left-5 top-1/2 -translate-y-1/2 bg-white rounded-full p-1 border border-[#EDEAFB] hidden md:block">
+            <ArrowRight size={20} className="text-[#5B3DF5]" />
+          </div>
+          <div className="text-sm font-semibold text-[#5B3DF5] mb-4 uppercase tracking-wide">Tasa Equivalente (Destino)</div>
+          <div className="space-y-4">
+
+            <label className="flex items-center gap-2 cursor-pointer mt-2">
+              <input type="checkbox" checked={tieneCapDestino} onChange={(e) => setTieneCapDestino(e.target.checked)} className="w-4 h-4 text-[#5B3DF5] rounded border-gray-300 focus:ring-[#5B3DF5]" />
+              <span className="text-sm text-gray-700 font-medium">¿Buscar con capitalización? (Tasa Nominal)</span>
+            </label>
+
+            {!tieneCapDestino ? (
+              <label className="flex flex-col gap-1">
+                <span className="text-xs uppercase tracking-wide text-gray-500 font-semibold">Periodo de la tasa efectiva buscada</span>
+                <select value={perDestino} onChange={(e) => setPerDestino(e.target.value)} className="border-2 border-[#EDEAFB] rounded-xl px-3 py-2.5 bg-white text-[#1A1533]">
+                  {opcionesPeriodo.map(o => <option key={o.id} value={o.id}>{o.label}</option>)}
+                </select>
+              </label>
+            ) : (
+              <label className="flex flex-col gap-1">
+                <span className="text-xs uppercase tracking-wide text-gray-500 font-semibold">Que se capitalice de forma...</span>
+                <select value={capDestino} onChange={(e) => setCapDestino(e.target.value)} className="border-2 border-[#EDEAFB] rounded-xl px-3 py-2.5 bg-white text-[#1A1533]">
+                  {opcionesPeriodo.map(o => <option key={o.id} value={o.id}>{o.label}</option>)}
+                </select>
+              </label>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-[#F1EDFF] border border-[#5B3DF5]/20 rounded-2xl p-6 text-center">
+        <div className="text-xs uppercase tracking-wide text-gray-500 font-semibold mb-2">Tasa Equivalente Resultante</div>
+        <div className="text-3xl sm:text-4xl font-semibold text-[#4530B8]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+          {calcularTasaDestino().toLocaleString('es-EC', { minimumFractionDigits: 4, maximumFractionDigits: 6 })}%
+        </div>
+        <div className="text-sm text-gray-600 mt-2 font-medium">
+          {tieneCapDestino ? 'Tasa Nominal Anual (TNA)' : 'Tasa Efectiva'}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ---------- Tab 4: Simulador de Destinos ----------
+// Se mantiene tal cual tu lógica original de simulador
+let extraIdSeq = 1;
 function DestinoDetalleModal({ path, objetivo, capacidad, tasaAnual, onClose }) {
   const [extraMensual, setExtraMensual] = useState(0);
   const [extrasUnicos, setExtrasUnicos] = useState([{ id: extraIdSeq++, mes: 3, monto: 0 }]);
 
-  const agregarExtra = () => {
-    setExtrasUnicos((arr) => {
-      const ultimoMes = arr.length ? arr[arr.length - 1].mes : 0;
-      return [...arr, { id: extraIdSeq++, mes: ultimoMes + 3, monto: 0 }];
-    });
-  };
+  const agregarExtra = () => setExtrasUnicos((arr) => [...arr, { id: extraIdSeq++, mes: (arr.length ? arr[arr.length - 1].mes : 0) + 3, monto: 0 }]);
   const quitarExtra = (id) => setExtrasUnicos((arr) => arr.filter((e) => e.id !== id));
-  const actualizarExtra = (id, campo) => (valor) =>
-    setExtrasUnicos((arr) => arr.map((e) => (e.id === id ? { ...e, [campo]: valor } : e)));
+  const actualizarExtra = (id, campo) => (valor) => setExtrasUnicos((arr) => arr.map((e) => (e.id === id ? { ...e, [campo]: valor } : e)));
 
-  const base = useMemo(
-    () => simularCamino({ tipo: path.tipoSim, monto: objetivo, base: capacidad, tasaAnual }),
-    [path, objetivo, capacidad, tasaAnual]
-  );
-  const ajustado = useMemo(
-    () => simularCamino({
-      tipo: path.tipoSim, monto: objetivo, base: capacidad, tasaAnual,
-      extraMensual, extrasUnicos,
-    }),
-    [path, objetivo, capacidad, tasaAnual, extraMensual, extrasUnicos]
-  );
+  const base = useMemo(() => simularCamino({ tipo: path.tipoSim, monto: objetivo, base: capacidad, tasaAnual }), [path, objetivo, capacidad, tasaAnual]);
+  const ajustado = useMemo(() => simularCamino({ tipo: path.tipoSim, monto: objetivo, base: capacidad, tasaAnual, extraMensual, extrasUnicos }), [path, objetivo, capacidad, tasaAnual, extraMensual, extrasUnicos]);
 
   const esDeuda = path.tipo === 'deuda';
   const diffMeses = isFinite(base.meses) && isFinite(ajustado.meses) ? base.meses - ajustado.meses : 0;
   const diffInteres = isFinite(base.totalInteres) && isFinite(ajustado.totalInteres) ? base.totalInteres - ajustado.totalInteres : 0;
-
-  const maxM = Math.min(240, Math.max(
-    isFinite(base.meses) ? base.meses : 60,
-    isFinite(ajustado.meses) ? ajustado.meses : 60,
-    12
-  ));
+  const maxM = Math.min(240, Math.max(isFinite(base.meses) ? base.meses : 60, isFinite(ajustado.meses) ? ajustado.meses : 60, 12));
+  
   const chartData = [];
   for (let m = 0; m <= maxM; m++) {
-    chartData.push({
-      mes: m,
-      Base: base.serie[m]?.saldo ?? (esDeuda ? 0 : base.serie[base.serie.length - 1]?.saldo),
-      'Con abonos extra': ajustado.serie[m]?.saldo ?? (esDeuda ? 0 : ajustado.serie[ajustado.serie.length - 1]?.saldo),
-    });
+    chartData.push({ mes: m, Base: base.serie[m]?.saldo ?? (esDeuda ? 0 : base.serie[base.serie.length - 1]?.saldo), 'Con abonos extra': ajustado.serie[m]?.saldo ?? (esDeuda ? 0 : ajustado.serie[ajustado.serie.length - 1]?.saldo) });
   }
 
   const PathIcon = path.icon;
 
   return (
     <Modal onClose={onClose} wide>
-      <div className="flex items-center gap-2 text-[#4530B8] font-semibold text-sm mb-1" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-        <PathIcon size={16} /> {path.label}
-      </div>
-      <h3 className="text-2xl text-[#1A1533] mb-4" style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600 }}>
-        Analiza este destino
-      </h3>
-
-      <p className="text-sm text-gray-600 mb-4">
-        {esDeuda
-          ? 'Prueba qué pasa si abonas un poco más cada mes, o si agregas uno o varios pagos extraordinarios en meses puntuales (por ejemplo, un bono o un aguinaldo).'
-          : 'Prueba qué pasa si aportas un poco más cada mes, o si agregas uno o varios aportes únicos en meses puntuales.'}
-      </p>
-
+      <div className="flex items-center gap-2 text-[#4530B8] font-semibold text-sm mb-1" style={{ fontFamily: "'Space Grotesk', sans-serif" }}><PathIcon size={16} /> {path.label}</div>
+      <h3 className="text-2xl text-[#1A1533] mb-4" style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600 }}>Analiza este destino</h3>
+      <p className="text-sm text-gray-600 mb-4">{esDeuda ? 'Prueba qué pasa si abonas un poco más cada mes, o si agregas uno o varios pagos extraordinarios en meses puntuales.' : 'Prueba qué pasa si aportas un poco más cada mes, o si agregas uno o varios aportes únicos en meses puntuales.'}</p>
+      
       <div className="bg-[#F7F5FF] rounded-2xl p-4 mb-5 space-y-4">
-        <div className="sm:max-w-xs">
-          <Field label={esDeuda ? 'Abono extra mensual' : 'Aporte extra mensual'} suffix="$" value={extraMensual} onChange={setExtraMensual} min={0} step={5} />
-        </div>
-
+        <div className="sm:max-w-xs"><Field label={esDeuda ? 'Abono extra mensual' : 'Aporte extra mensual'} suffix="$" value={extraMensual} onChange={setExtraMensual} min={0} step={5} /></div>
         <div className="border-t border-[#E3DBFF] pt-4">
           <div className="flex items-center justify-between mb-3">
-            <span className="text-xs uppercase tracking-wide text-gray-500 font-semibold">
-              {esDeuda ? 'Pagos extraordinarios puntuales' : 'Aportes únicos extra'}
-            </span>
-            <button
-              onClick={agregarExtra}
-              className="flex items-center gap-1 text-xs font-semibold text-white pl-2.5 pr-3 py-1.5 rounded-full hover:opacity-90 transition-opacity"
-              style={{ background: 'linear-gradient(135deg, #5B3DF5, #4530B8)' }}
-            >
-              <Plus size={14} /> Agregar pago
-            </button>
+            <span className="text-xs uppercase tracking-wide text-gray-500 font-semibold">{esDeuda ? 'Pagos extraordinarios puntuales' : 'Aportes únicos extra'}</span>
+            <button onClick={agregarExtra} className="flex items-center gap-1 text-xs font-semibold text-white pl-2.5 pr-3 py-1.5 rounded-full hover:opacity-90 transition-opacity" style={{ background: 'linear-gradient(135deg, #5B3DF5, #4530B8)' }}><Plus size={14} /> Agregar</button>
           </div>
-
-          {extrasUnicos.length === 0 && (
-            <p className="text-xs text-gray-400 italic">Sin pagos puntuales — agrega uno con el botón de arriba.</p>
-          )}
-
+          {extrasUnicos.length === 0 && <p className="text-xs text-gray-400 italic">Sin pagos puntuales — agrega uno con el botón de arriba.</p>}
           <div className="grid sm:grid-cols-2 gap-3">
             {extrasUnicos.map((extra, i) => (
               <div key={extra.id} className="relative bg-white border border-[#E3DBFF] rounded-2xl p-3 pt-3.5">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-[11px] uppercase tracking-wide text-[#5B3DF5] font-semibold">
-                    Pago extra #{i + 1}
-                  </span>
-                  <button
-                    onClick={() => quitarExtra(extra.id)}
-                    className="p-1 rounded-full text-gray-400 hover:bg-[#FFE8E3] hover:text-[#C23E28] transition-colors"
-                    aria-label={`Quitar pago extra ${i + 1}`}
-                  >
-                    <X size={13} />
-                  </button>
+                  <span className="text-[11px] uppercase tracking-wide text-[#5B3DF5] font-semibold">Extra #{i + 1}</span>
+                  <button onClick={() => quitarExtra(extra.id)} className="p-1 rounded-full text-gray-400 hover:bg-[#FFE8E3] hover:text-[#C23E28]"><X size={13} /></button>
                 </div>
                 <div className="grid grid-cols-2 gap-2">
-                  <Field
-                    label={esDeuda ? 'Pago único' : 'Monto'}
-                    suffix="$"
-                    value={extra.monto}
-                    onChange={actualizarExtra(extra.id, 'monto')}
-                    min={0}
-                    step={50}
-                  />
-                  <Field
-                    label="En el mes"
-                    value={extra.mes}
-                    onChange={(v) => actualizarExtra(extra.id, 'mes')(Math.max(1, Math.round(v)))}
-                    min={1}
-                    step={1}
-                  />
+                  <Field label={esDeuda ? 'Pago único' : 'Monto'} suffix="$" value={extra.monto} onChange={actualizarExtra(extra.id, 'monto')} min={0} step={50} />
+                  <Field label="En el mes" value={extra.mes} onChange={(v) => actualizarExtra(extra.id, 'mes')(Math.max(1, Math.round(v)))} min={1} step={1} />
                 </div>
               </div>
             ))}
@@ -799,7 +820,7 @@ function DestinoDetalleModal({ path, objetivo, capacidad, tasaAnual, onClose }) 
           <div className="text-sm text-gray-500">{esDeuda ? 'interés pagado' : 'interés ganado'}: {fmt(base.totalInteres)}</div>
         </div>
         <div className="rounded-2xl border-2 border-[#12B76A] p-4 bg-[#E3FBEF]">
-          <div className="text-[11px] uppercase tracking-wide text-[#067A48] font-semibold mb-1">Con tus abonos extra</div>
+          <div className="text-[11px] uppercase tracking-wide text-[#067A48] font-semibold mb-1">Con tus extras</div>
           <div className="text-lg font-semibold text-[#067A48]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{monthsToYears(ajustado.meses)}</div>
           <div className="text-sm text-[#067A48]">{esDeuda ? 'interés pagado' : 'interés ganado'}: {fmt(ajustado.totalInteres)}</div>
         </div>
@@ -808,9 +829,7 @@ function DestinoDetalleModal({ path, objetivo, capacidad, tasaAnual, onClose }) 
       {(diffMeses !== 0 || diffInteres !== 0) && isFinite(diffMeses) && (
         <div className="flex items-center gap-2 text-sm text-[#067A48] bg-[#E3FBEF] rounded-xl px-4 py-3 mb-5">
           <ArrowRight size={16} />
-          {esDeuda
-            ? `Sales de la deuda ${monthsToYears(Math.max(0, diffMeses))} antes y te ahorras ${fmt(Math.max(0, diffInteres))} en intereses.`
-            : `Llegas a tu meta ${monthsToYears(Math.max(0, diffMeses))} antes.`}
+          {esDeuda ? `Sales de la deuda ${monthsToYears(Math.max(0, diffMeses))} antes y te ahorras ${fmt(Math.max(0, diffInteres))} en intereses.` : `Llegas a tu meta ${monthsToYears(Math.max(0, diffMeses))} antes.`}
         </div>
       )}
 
@@ -819,11 +838,11 @@ function DestinoDetalleModal({ path, objetivo, capacidad, tasaAnual, onClose }) 
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={chartData} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#EEF0F0" vertical={false} />
-            <XAxis dataKey="mes" tick={{ fontSize: 10, fill: '#9CA3AF' }} label={{ value: 'Meses', position: 'insideBottom', offset: -2, fontSize: 11, fill: '#9CA3AF' }} />
+            <XAxis dataKey="mes" tick={{ fontSize: 10, fill: '#9CA3AF' }} />
             <YAxis tick={{ fontSize: 10, fill: '#9CA3AF' }} tickFormatter={(v) => '$' + fmtInt(v)} />
             <Tooltip formatter={(v) => fmt(v)} contentStyle={{ fontSize: 12, borderRadius: 12 }} />
             <Legend wrapperStyle={{ fontSize: 11 }} />
-            {!esDeuda && <ReferenceLine y={objetivo} stroke="#9CA3AF" strokeDasharray="4 4" label={{ value: 'Meta', fontSize: 10, fill: '#9CA3AF' }} />}
+            {!esDeuda && <ReferenceLine y={objetivo} stroke="#9CA3AF" strokeDasharray="4 4" />}
             <Line type="monotone" dataKey="Base" stroke="#9CA3AF" strokeWidth={2} dot={false} />
             <Line type="monotone" dataKey="Con abonos extra" stroke="#12B76A" strokeWidth={2} dot={false} />
           </LineChart>
@@ -833,7 +852,6 @@ function DestinoDetalleModal({ path, objetivo, capacidad, tasaAnual, onClose }) 
   );
 }
 
-// ---------- Tab de simulador de destinos ----------
 function SimuladorTab() {
   const [objetivo, setObjetivo] = useState(5000);
   const [capacidad, setCapacidad] = useState(250);
@@ -841,89 +859,25 @@ function SimuladorTab() {
   const [detalle, setDetalle] = useState(null);
 
   const resultados = useMemo(() => {
-    const alcancia = simularCamino({ tipo: 'alcancia', monto: objetivo, base: capacidad });
-    const ahorroSimple = simularCamino({ tipo: 'ahorroSimple', monto: objetivo, base: capacidad, tasaAnual: tasas.simple });
-    const ahorroCompuesto = simularCamino({ tipo: 'ahorroCompuesto', monto: objetivo, base: capacidad, tasaAnual: tasas.compuesto });
-    const prestamo = simularCamino({ tipo: 'deuda', monto: objetivo, base: capacidad, tasaAnual: tasas.prestamo });
-    const tarjeta = simularCamino({ tipo: 'deuda', monto: objetivo, base: capacidad, tasaAnual: tasas.tarjeta });
-    return { alcancia, ahorroSimple, ahorroCompuesto, prestamo, tarjeta };
+    return {
+      alcancia: simularCamino({ tipo: 'alcancia', monto: objetivo, base: capacidad }),
+      ahorroSimple: simularCamino({ tipo: 'ahorroSimple', monto: objetivo, base: capacidad, tasaAnual: tasas.simple }),
+      ahorroCompuesto: simularCamino({ tipo: 'ahorroCompuesto', monto: objetivo, base: capacidad, tasaAnual: tasas.compuesto }),
+      prestamo: simularCamino({ tipo: 'deuda', monto: objetivo, base: capacidad, tasaAnual: tasas.prestamo }),
+      tarjeta: simularCamino({ tipo: 'deuda', monto: objetivo, base: capacidad, tasaAnual: tasas.tarjeta })
+    };
   }, [objetivo, capacidad, tasas]);
 
-  const setTasa = (key) => (e) => setTasas((t) => ({ ...t, [key]: parseFloat(e.target.value) || 0 }));
-
-  const ahorroChart = useMemo(() => {
-    const maxM = Math.min(240, Math.max(
-      isFinite(resultados.alcancia.meses) ? resultados.alcancia.meses : 0,
-      isFinite(resultados.ahorroSimple.meses) ? resultados.ahorroSimple.meses : 0,
-      isFinite(resultados.ahorroCompuesto.meses) ? resultados.ahorroCompuesto.meses : 0,
-      12
-    ));
-    const data = [];
-    for (let m = 0; m <= maxM; m++) {
-      data.push({
-        mes: m,
-        Alcancía: resultados.alcancia.serie[m]?.saldo ?? resultados.alcancia.serie[resultados.alcancia.serie.length - 1]?.saldo,
-        'Ahorro simple': resultados.ahorroSimple.serie[m]?.saldo,
-        'Ahorro compuesto': resultados.ahorroCompuesto.serie[m]?.saldo,
-      });
-    }
-    return data;
-  }, [resultados]);
-
-  const deudaChart = useMemo(() => {
-    const maxM = Math.min(240, Math.max(
-      isFinite(resultados.prestamo.meses) ? resultados.prestamo.meses : 60,
-      isFinite(resultados.tarjeta.meses) ? resultados.tarjeta.meses : 60,
-      12
-    ));
-    const data = [];
-    for (let m = 0; m <= maxM; m++) {
-      data.push({
-        mes: m,
-        Préstamo: resultados.prestamo.serie[m]?.saldo ?? 0,
-        'Tarjeta de crédito': resultados.tarjeta.serie[m]?.saldo ?? (resultados.tarjeta.nuncaPaga ? objetivo : 0),
-      });
-    }
-    return data;
-  }, [resultados, objetivo]);
-
   const paths = [
-    {
-      key: 'alcancia', label: 'Alcancía (sin interés)', icon: Wallet, tipo: 'ahorro', tipoSim: 'alcancia',
-      meses: resultados.alcancia.meses, interes: 0, editable: false,
-      nota: 'Guardas el dinero sin que gane nada. Es la referencia base.',
-    },
-    {
-      key: 'simple', label: 'Ahorro a interés simple', icon: PiggyBank, tipo: 'ahorro', tipoSim: 'ahorroSimple',
-      meses: resultados.ahorroSimple.meses, interes: resultados.ahorroSimple.totalInteres, editable: true, tasaKey: 'simple',
-      nota: 'Tu aporte gana interés, pero el interés no genera más interés.',
-    },
-    {
-      key: 'compuesto', label: 'Ahorro a interés compuesto', icon: TrendingUp, tipo: 'ahorro', tipoSim: 'ahorroCompuesto',
-      meses: resultados.ahorroCompuesto.meses, interes: resultados.ahorroCompuesto.totalInteres, editable: true, tasaKey: 'compuesto',
-      nota: 'El interés generado también empieza a generar interés.',
-    },
-    {
-      key: 'prestamo', label: 'Préstamo bancario', icon: Landmark, tipo: 'deuda', tipoSim: 'deuda',
-      meses: resultados.prestamo.meses, interes: resultados.prestamo.totalInteres, editable: true, tasaKey: 'prestamo',
-      nuncaPaga: resultados.prestamo.nuncaPaga,
-      nota: 'Recibes el monto ahora y lo pagas en cuotas con interés.',
-    },
-    {
-      key: 'tarjeta', label: 'Tarjeta de crédito', icon: CreditCard, tipo: 'deuda', tipoSim: 'deuda',
-      meses: resultados.tarjeta.meses, interes: resultados.tarjeta.totalInteres, editable: true, tasaKey: 'tarjeta',
-      nuncaPaga: resultados.tarjeta.nuncaPaga,
-      nota: 'Mismo monto, tasa mucho más alta: el costo real cambia radicalmente.',
-    },
+    { key: 'alcancia', label: 'Alcancía (sin interés)', icon: Wallet, tipo: 'ahorro', tipoSim: 'alcancia', meses: resultados.alcancia.meses, interes: 0, editable: false, nota: 'Guardas el dinero sin que gane nada.' },
+    { key: 'simple', label: 'Ahorro a interés simple', icon: PiggyBank, tipo: 'ahorro', tipoSim: 'ahorroSimple', meses: resultados.ahorroSimple.meses, interes: resultados.ahorroSimple.totalInteres, editable: true, tasaKey: 'simple', nota: 'Tu aporte gana interés simple.' },
+    { key: 'compuesto', label: 'Ahorro a interés compuesto', icon: TrendingUp, tipo: 'ahorro', tipoSim: 'ahorroCompuesto', meses: resultados.ahorroCompuesto.meses, interes: resultados.ahorroCompuesto.totalInteres, editable: true, tasaKey: 'compuesto', nota: 'Interés sobre interés.' },
+    { key: 'prestamo', label: 'Préstamo bancario', icon: Landmark, tipo: 'deuda', tipoSim: 'deuda', meses: resultados.prestamo.meses, interes: resultados.prestamo.totalInteres, editable: true, tasaKey: 'prestamo', nuncaPaga: resultados.prestamo.nuncaPaga, nota: 'Recibes el monto y lo pagas en cuotas.' },
+    { key: 'tarjeta', label: 'Tarjeta de crédito', icon: CreditCard, tipo: 'deuda', tipoSim: 'deuda', meses: resultados.tarjeta.meses, interes: resultados.tarjeta.totalInteres, editable: true, tasaKey: 'tarjeta', nuncaPaga: resultados.tarjeta.nuncaPaga, nota: 'Tasa mucho más alta.' }
   ];
 
   return (
     <div className="space-y-6">
-      <div className="rounded-2xl bg-[#F1EDFF] border border-[#5B3DF5]/15 p-4 flex items-start gap-2">
-        <Target size={18} className="mt-0.5 flex-shrink-0 text-[#5B3DF5]" />
-        <p className="text-sm text-gray-700">Ingresa un monto que quieres conseguir o gastar, y cuánto puedes aportar o pagar cada mes. Verás, con el mismo par de números, cinco caminos financieros distintos y en cuántos meses llegas a la meta — o sales de la deuda. Toca "Analizar" en cualquiera para probar pagos extraordinarios.</p>
-      </div>
-
       <div className="grid sm:grid-cols-2 gap-4 bg-white p-4 rounded-2xl border border-[#EDEAFB]">
         <Field label="Monto objetivo" suffix="$" value={objetivo} onChange={setObjetivo} min={1} step={100} />
         <Field label="Capacidad mensual (aporte o pago)" suffix="$" value={capacidad} onChange={setCapacidad} min={1} step={10} />
@@ -936,100 +890,29 @@ function SimuladorTab() {
           return (
             <div key={p.key} className={`bg-white border-2 rounded-2xl p-4 flex flex-col gap-3 ${isDeuda ? 'border-[#FFC4B8]' : 'border-[#F1EFFC]'}`}>
               <div className="flex items-center gap-2">
-                <div className={`p-1.5 rounded-full ${isDeuda ? 'bg-[#FFE8E3] text-[#C23E28]' : 'bg-[#E3FBEF] text-[#067A48]'}`}>
-                  <Icon size={16} />
-                </div>
+                <div className={`p-1.5 rounded-full ${isDeuda ? 'bg-[#FFE8E3] text-[#C23E28]' : 'bg-[#E3FBEF] text-[#067A48]'}`}><Icon size={16} /></div>
                 <span className="font-semibold text-[#1A1533] text-sm" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{p.label}</span>
               </div>
               {p.editable && (
                 <label className="flex items-center gap-2 text-xs text-gray-500">
                   Tasa anual
-                  <input
-                    type="number"
-                    value={tasas[p.tasaKey]}
-                    onChange={setTasa(p.tasaKey)}
-                    className="w-16 border-2 border-[#EDEAFB] rounded-lg px-1.5 py-0.5 text-[#1A1533]"
-                    style={{ fontFamily: "'JetBrains Mono', monospace" }}
-                  />
-                  %
+                  <input type="number" value={tasas[p.tasaKey]} onChange={(e) => setTasas((t) => ({ ...t, [p.tasaKey]: parseFloat(e.target.value) || 0 }))} className="w-16 border-2 border-[#EDEAFB] rounded-lg px-1.5 py-0.5 text-[#1A1533]" style={{ fontFamily: "'JetBrains Mono', monospace" }} />%
                 </label>
               )}
               {p.nuncaPaga ? (
-                <div className="flex items-start gap-1.5 text-[#C23E28] text-sm bg-[#FFE8E3] rounded-xl px-3 py-2">
-                  <AlertTriangle size={14} className="mt-0.5 flex-shrink-0" />
-                  Tu pago mensual no cubre ni el interés: la deuda nunca se termina de pagar.
-                </div>
+                <div className="text-[#C23E28] text-sm bg-[#FFE8E3] rounded-xl px-3 py-2">Tu pago mensual no cubre ni el interés.</div>
               ) : (
                 <>
-                  <div>
-                    <div className="text-[11px] uppercase tracking-wide text-gray-500">{isDeuda ? 'Tiempo para pagarla' : 'Tiempo para lograrlo'}</div>
-                    <div className="text-lg" style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600 }}>{monthsToYears(p.meses)}</div>
-                  </div>
-                  <div>
-                    <div className="text-[11px] uppercase tracking-wide text-gray-500">{isDeuda ? 'Interés total pagado' : 'Interés total ganado'}</div>
-                    <div className={`text-sm font-semibold ${isDeuda ? 'text-[#C23E28]' : 'text-[#067A48]'}`}>{fmt(p.interes)}</div>
-                  </div>
+                  <div><div className="text-[11px] uppercase tracking-wide text-gray-500">{isDeuda ? 'Tiempo para pagarla' : 'Tiempo para lograrlo'}</div><div className="text-lg font-semibold">{monthsToYears(p.meses)}</div></div>
+                  <div><div className="text-[11px] uppercase tracking-wide text-gray-500">{isDeuda ? 'Interés total pagado' : 'Interés total ganado'}</div><div className={`text-sm font-semibold ${isDeuda ? 'text-[#C23E28]' : 'text-[#067A48]'}`}>{fmt(p.interes)}</div></div>
                 </>
               )}
-              <p className="text-xs text-gray-500 mt-auto pt-2 border-t border-[#F1EFFC]">{p.nota}</p>
-              <button
-                onClick={() => setDetalle(p)}
-                className="flex items-center justify-center gap-1.5 text-xs font-semibold py-2 rounded-full text-white hover:opacity-90 transition-opacity"
-                style={{ background: 'linear-gradient(135deg, #5B3DF5, #4530B8)' }}
-              >
-                Analizar este destino <RotateCcw size={12} />
-              </button>
+              <button onClick={() => setDetalle(p)} className="mt-auto py-2 rounded-full text-xs font-semibold text-white" style={{ background: 'linear-gradient(135deg, #5B3DF5, #4530B8)' }}>Analizar destino</button>
             </div>
           );
         })}
       </div>
-
-      <div className="grid sm:grid-cols-2 gap-4">
-        <div>
-          <div className="text-xs uppercase tracking-wide text-gray-500 font-semibold mb-2">Caminos de ahorro (llegar al objetivo)</div>
-          <div className="bg-white border border-[#EDEAFB] rounded-2xl p-3" style={{ height: 240 }}>
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={ahorroChart} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#EEF0F0" vertical={false} />
-                <XAxis dataKey="mes" tick={{ fontSize: 10, fill: '#9CA3AF' }} label={{ value: 'Meses', position: 'insideBottom', offset: -2, fontSize: 11, fill: '#9CA3AF' }} />
-                <YAxis tick={{ fontSize: 10, fill: '#9CA3AF' }} tickFormatter={(v) => '$' + fmtInt(v)} />
-                <Tooltip formatter={(v) => fmt(v)} contentStyle={{ fontSize: 12, borderRadius: 12 }} />
-                <Legend wrapperStyle={{ fontSize: 11 }} />
-                <ReferenceLine y={objetivo} stroke="#374151" strokeDasharray="4 4" label={{ value: 'Meta', fontSize: 10, fill: '#374151' }} />
-                <Line type="monotone" dataKey="Alcancía" stroke="#9CA3AF" strokeWidth={2} dot={false} />
-                <Line type="monotone" dataKey="Ahorro simple" stroke="#5B3DF5" strokeWidth={2} dot={false} />
-                <Line type="monotone" dataKey="Ahorro compuesto" stroke="#12B76A" strokeWidth={2} dot={false} />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
-        <div>
-          <div className="text-xs uppercase tracking-wide text-gray-500 font-semibold mb-2">Caminos de deuda (llegar a saldo cero)</div>
-          <div className="bg-white border border-[#EDEAFB] rounded-2xl p-3" style={{ height: 240 }}>
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={deudaChart} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#EEF0F0" vertical={false} />
-                <XAxis dataKey="mes" tick={{ fontSize: 10, fill: '#9CA3AF' }} label={{ value: 'Meses', position: 'insideBottom', offset: -2, fontSize: 11, fill: '#9CA3AF' }} />
-                <YAxis tick={{ fontSize: 10, fill: '#9CA3AF' }} tickFormatter={(v) => '$' + fmtInt(v)} />
-                <Tooltip formatter={(v) => fmt(v)} contentStyle={{ fontSize: 12, borderRadius: 12 }} />
-                <Legend wrapperStyle={{ fontSize: 11 }} />
-                <Line type="monotone" dataKey="Préstamo" stroke="#5B3DF5" strokeWidth={2} dot={false} />
-                <Line type="monotone" dataKey="Tarjeta de crédito" stroke="#FF6A55" strokeWidth={2} dot={false} />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
-      </div>
-
-      {detalle && (
-        <DestinoDetalleModal
-          path={detalle}
-          objetivo={objetivo}
-          capacidad={capacidad}
-          tasaAnual={detalle.tasaKey ? tasas[detalle.tasaKey] : 0}
-          onClose={() => setDetalle(null)}
-        />
-      )}
+      {detalle && <DestinoDetalleModal path={detalle} objetivo={objetivo} capacidad={capacidad} tasaAnual={detalle.tasaKey ? tasas[detalle.tasaKey] : 0} onClose={() => setDetalle(null)} />}
     </div>
   );
 }
@@ -1039,59 +922,41 @@ function FinanzasApp() {
   const [tab, setTab] = useState('calculadoras');
 
   return (
-    <div
-      className="min-h-screen w-full"
-      style={{
-        background:
-          'radial-gradient(1100px 500px at 85% -10%, rgba(91,61,245,0.10), transparent 60%), radial-gradient(900px 500px at -10% 10%, rgba(18,183,106,0.08), transparent 55%), #FAFAFC',
-      }}
-    >
+    <div className="min-h-screen w-full" style={{ background: 'radial-gradient(1100px 500px at 85% -10%, rgba(91,61,245,0.10), transparent 60%), radial-gradient(900px 500px at -10% 10%, rgba(18,183,106,0.08), transparent 55%), #FAFAFC' }}>
       <div className="max-w-5xl mx-auto px-4 py-6 sm:py-8" style={{ fontFamily: "'Inter', sans-serif" }}>
-        <header
-          className="relative overflow-hidden rounded-3xl mb-5 px-5 py-6 sm:px-8 sm:py-8"
-          style={{ background: 'linear-gradient(135deg, #5B3DF5 0%, #7C5CFF 55%, #4530B8 100%)' }}
-        >
-          <svg
-            className="absolute inset-0 w-full h-full opacity-40 pointer-events-none"
-            viewBox="0 0 800 220"
-            preserveAspectRatio="none"
-          >
-            <path
-              d="M -20 190 C 150 150, 220 230, 380 150 S 620 30, 820 70"
-              fill="none"
-              stroke="#FFC53D"
-              strokeWidth="2.5"
-              className="route-line"
-              strokeLinecap="round"
-            />
+        <header className="relative overflow-hidden rounded-3xl mb-5 px-5 py-6 sm:px-8 sm:py-8" style={{ background: 'linear-gradient(135deg, #5B3DF5 0%, #7C5CFF 55%, #4530B8 100%)' }}>
+          <svg className="absolute inset-0 w-full h-full opacity-40 pointer-events-none" viewBox="0 0 800 220" preserveAspectRatio="none">
+            <path d="M -20 190 C 150 150, 220 230, 380 150 S 620 30, 820 70" fill="none" stroke="#FFC53D" strokeWidth="2.5" className="route-line" strokeLinecap="round" />
             <circle cx="380" cy="150" r="5" fill="#FFC53D" />
             <circle cx="620" cy="60" r="5" fill="#FFC53D" opacity="0.85" />
             <circle cx="150" cy="150" r="4" fill="#FFFFFF" opacity="0.6" />
           </svg>
           <div className="relative">
             <div className="inline-flex items-center gap-2 text-[#FFE9A8] text-xs uppercase tracking-[0.15em] font-semibold mb-3 bg-white/10 rounded-full px-3 py-1">
-              <Calculator size={14} /> Matemáticas discretas · finanzas para todos
+              <Calculator size={14} /> Matemáticas discretas · finanzas
             </div>
             <h1 className="text-3xl sm:text-4xl text-white" style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700 }}>
               Cuaderno de matemáticas financieras
             </h1>
             <p className="text-white/80 text-sm mt-2 max-w-2xl leading-relaxed">
-              Aprende cómo funcionan el interés simple, el interés compuesto y los préstamos en cuotas — con explicaciones simples, fórmulas claras, y una calculadora que te muestra exactamente cómo se obtuvo cada número.
+              Herramientas interactivas para comprender el valor del dinero, equivalencia de tasas y esquemas de amortización.
             </p>
           </div>
         </header>
 
-        <div className="flex gap-2 mb-4">
-          <TabButton active={tab === 'calculadoras'} onClick={() => setTab('calculadoras')} icon={Calculator}>Calculadoras</TabButton>
+        <div className="flex gap-2 mb-4 overflow-x-auto pb-2 scrollbar-hide">
+          <TabButton active={tab === 'calculadoras'} onClick={() => setTab('calculadoras')} icon={Calculator}>Amortización</TabButton>
+          <TabButton active={tab === 'valorTiempo'} onClick={() => setTab('valorTiempo')} icon={ClockIcon}>Valor en el Tiempo</TabButton>
+          <TabButton active={tab === 'tasasEquivalentes'} onClick={() => setTab('tasasEquivalentes')} icon={PercentIcon}>Tasas Equivalentes</TabButton>
           <TabButton active={tab === 'simulador'} onClick={() => setTab('simulador')} icon={Target}>Simulador de destinos</TabButton>
         </div>
+        
         <div className="bg-white rounded-3xl border border-[#EDEAFB] p-4 sm:p-6 shadow-xl shadow-[#5B3DF5]/[0.06]">
-          {tab === 'calculadoras' ? <CalculadorasTab /> : <SimuladorTab />}
+          {tab === 'calculadoras' && <CalculadorasTab />}
+          {tab === 'valorTiempo' && <ValorTiempoTab />}
+          {tab === 'tasasEquivalentes' && <TasasEquivalentesTab />}
+          {tab === 'simulador' && <SimuladorTab />}
         </div>
-
-        <footer className="text-center text-[11px] text-gray-400 mt-6">
-          Prototipo educativo · las cifras son ilustrativas y no constituyen asesoría financiera.
-        </footer>
       </div>
     </div>
   );
