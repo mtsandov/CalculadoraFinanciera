@@ -30,7 +30,8 @@
 <body>
 <div id="root"></div>
 
-<script type="text/babel" data-presets="react">
+<script type="text/babel" data-plugins="transform-react-jsx">
+/** @jsxRuntime classic */
 const { useState, useMemo } = React;
 const {
   ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
